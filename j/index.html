@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>@Juice12am</title>
+    <style>
+
+        body::before {
+            content: "";
+            background: url('https://media.discordapp.net/attachments/1405372676788453517/1417960612151033906/670dc94d4384ff6b3383f27c61c5491a.gif?ex=68cc623a&is=68cb10ba&hm=abb7f51c7eba4f4d4cd6fd493772e50d669fdde28d6359576f3c85fcc6c602fa&=') center/cover no-repeat;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            filter: blur(10px);
+            opacity: 0.2;
+        }
+
+        #who span {
+            display: inline-block;
+            background: url('gif/sparkle_red.gif') no-repeat;
+            background-size: cover;
+            padding: 4px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <main>
+        <img src="https://media.discordapp.net/attachments/1405372676788453517/1417960611790192764/11.jpg?ex=68cc623a&is=68cb10ba&hm=4c1af421863bcc951d74d938185b9a5c4d0bd1633ec753f5422dc88b2ba81e85&=&format=webp" alt="Profile Picture">
+        <span id="who"></span>
+        <span id="pointer">&#9758;</span>
+        <span id="footer"></span>
+        <div class="flexbox">
+            <a href="https://discord.gg/kut"><button><i class="icon fa-brands discord"></i>/kut</button></a>
+            <a href="https://discord.gg/RCnXAvffD4"><button><i class="icon fa-brands discord"></i>RapeBin</button></a>
+            <a href="https://rarbin.com/user/1x5"><button><i class="icon fa-brands telegram"></i>Rarbin</button></a>
+        </div>
+    </main>
+
+    <audio id="backgroundMusic">
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const text = "@Juice12AM";
+        const whoElement = document.getElementById("who");
+        const footerText = "Discord / drug.abuse";
+        const footerElement = document.getElementById("footer");
+        const pointerElement = document.getElementById("pointer");
+        let index = 0;
+        let typing = true;
+        let musicPlayed = false;
+
+        function createSpans(text, parentElement) {
+            for (let char of text) {
+                const span = document.createElement("span");
+                span.textContent = char;
+                parentElement.appendChild(span);
+            }
+        }
+
+        createSpans(text, whoElement);
+        typeWriter();
+
+        function typeWriter() {
+            if (index < footerText.length && typing) {
+                footerElement.innerHTML += footerText.charAt(index);
+                index++;
+                setTimeout(typeWriter, 100);
+            } else if (typing) {
+                typing = false;
+                pointerElement.style.display = "inline-block";
+            }
+        }
+
+        function playAudio() {
+            if (!musicPlayed) {
+                const audio = document.getElementById("backgroundMusic");
+                audio.play();
+                musicPlayed = true;
+            }
+        }
+        
+        document.addEventListener("click", playAudio);
+    </script>
+</body>
+</html>
