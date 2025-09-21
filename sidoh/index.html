@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>@sidoh <3</title>
     <style>
-
         body::before {
             content: "";
             background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419151023292940359/discord.gif?ex=68d0b6e2&is=68cf6562&hm=1ccb007fb66cb62badd54686cbed9972ec20b8c141648634aa4ad16cd8134298&') center/cover no-repeat;
@@ -28,6 +27,14 @@
             padding: 4px;
         }
 
+        .view-counter {
+            color: white;
+            font-size: 20px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
@@ -41,6 +48,7 @@
             <a href="https://discord.gg/kut"><button><i class="icon fa-brands discord"></i>/kut</button></a>
             <a href="https://discord.gg/RCnXAvffD4"><button><i class="icon fa-brands discord"></i>rapebin <3</button></a>
         </div>
+        <div class="view-counter" id="viewCounter">Views: 0</div>
     </main>
 
     <audio id="backgroundMusic">
@@ -53,9 +61,11 @@
         const footerText = "Discord / rapethebin";
         const footerElement = document.getElementById("footer");
         const pointerElement = document.getElementById("pointer");
+        const viewCounterElement = document.getElementById("viewCounter");
         let index = 0;
         let typing = true;
         let musicPlayed = false;
+        let viewCount = 0;
 
         function createSpans(text, parentElement) {
             for (let char of text) {
@@ -65,8 +75,14 @@
             }
         }
 
+        function updateViewCounter() {
+            viewCount++;
+            viewCounterElement.textContent = `Views: ${viewCount}`;
+        }
+
         createSpans(text, whoElement);
         typeWriter();
+        updateViewCounter();
 
         function typeWriter() {
             if (index < footerText.length && typing) {
@@ -91,8 +107,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
