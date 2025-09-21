@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>@sidoh <3</title>
+    <title>@Sidoh <3</title>
     <style>
         body::before {
             content: "";
-            background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419151023292940359/discord.gif?ex=68d0b6e2&is=68cf6562&hm=1ccb007fb66cb62badd54686cbed9972ec20b8c141648634aa4ad16cd8134298&') center/cover no-repeat;
+            background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419151023292940359/discord.gif?ex=68d15fa2&is=68d00e22&hm=bbc6a2f1c777412bdefc39134dbac39f086bc2859da930d26c755872a7056cc7&') center/cover no-repeat;
             position: absolute;
             top: 0;
             left: 0;
@@ -22,33 +22,34 @@
 
         #who span {
             display: inline-block;
-            background: url('gif/sparkle_black.gif') no-repeat;
+            background: url('gif/sparkle_white.gif') no-repeat;
             background-size: cover;
             padding: 4px;
         }
 
-        .view-counter {
-            color: white;
-            font-size: 20px;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            z-index: 1;
+        .flexbox {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #viewCounter {
+            color: white; /* Changed the color of the view counter to white */
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <main>
-        <img src="https://cdn.discordapp.com/attachments/1419150915088289804/1419151046751682630/Snapchat-919882115.jpg?ex=68d0b6e8&is=68cf6568&hm=168ffb20594fcf6dde83974217385a110a273d186343f1237107be0731bc4576&" alt="Profile Picture">
+        <img src="https://cdn.discordapp.com/attachments/1419150915088289804/1419151046751682630/Snapchat-919882115.jpg?ex=68d15fa8&is=68d00e28&hm=d45ed10a3cb241eb2343ff1df7e160c8ac5b5d259cc0db9c50c3952bc9c0f447&" alt="Profile Picture">
         <span id="who"></span>
         <span id="pointer">&#9758;</span>
         <span id="footer"></span>
         <div class="flexbox">
+            <a href="https://rapebin.online/"><button><i class="icon fa-brands telegram"></i>rapebin</button></a>
             <a href="https://discord.gg/kut"><button><i class="icon fa-brands discord"></i>/kut</button></a>
-            <a href="https://discord.gg/RCnXAvffD4"><button><i class="icon fa-brands discord"></i>rapebin <3</button></a>
         </div>
-        <div class="view-counter" id="viewCounter">Views: 0</div>
+        <div id="viewCounter">Views: <span id="count">0</span></div>
     </main>
 
     <audio id="backgroundMusic">
@@ -61,28 +62,28 @@
         const footerText = "Discord / rapethebin";
         const footerElement = document.getElementById("footer");
         const pointerElement = document.getElementById("pointer");
-        const viewCounterElement = document.getElementById("viewCounter");
+        const viewCountElement = document.getElementById("count");
         let index = 0;
         let typing = true;
         let musicPlayed = false;
         let viewCount = 0;
 
         function createSpans(text, parentElement) {
-            for (let char of text) {
+            for (const char of text) {
                 const span = document.createElement("span");
                 span.textContent = char;
                 parentElement.appendChild(span);
             }
         }
 
-        function updateViewCounter() {
+        function updateViewCount() {
             viewCount++;
-            viewCounterElement.textContent = `Views: ${viewCount}`;
+            viewCountElement.textContent = viewCount;
         }
 
         createSpans(text, whoElement);
         typeWriter();
-        updateViewCounter();
+        updateViewCount();
 
         function typeWriter() {
             if (index < footerText.length && typing) {
