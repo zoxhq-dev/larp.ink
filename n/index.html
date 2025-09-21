@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>@NigaBones &lt;3</title>
+    <title>@NigaBones <3</title>
     <style>
         body::before {
             content: "";
@@ -27,28 +27,29 @@
             padding: 4px;
         }
 
+        .flexbox {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
         #viewCounter {
-            color: white; /* Set the color of the view counter to white */
-            position: fixed; /* Position it fixed to the viewport */
-            top: 10px; /* Adjust the position as needed */
-            right: 10px; /* Adjust the position as needed */
-            font-size: 20px; /* Set font size */
-            z-index: 1; /* Ensure it appears above other elements */
+            color: white; /* Changed the color of the view counter to white */
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <main>
-        <img src="https://cdn.discordapp.com/attachments/1419150915088289804/1419378486283473138/a65008eeab0b0a53d5a7a55a43068182.png?ex=68d18ab9&is=68d03939&hm=c0a4160ca0d2847dd898a0fb8ea389178a2abf1e26f5a97ad3e2fc19ec10faab&?size=1024" alt="Profile Picture">
+        <img src="https://cdn.discordapp.com/attachments/1419150915088289804/1419378486283473138/a65008eeab0b0a53d5a7a55a43068182.png?ex=68d18ab9&is=68d03939&hm=c0a4160ca0d2847dd898a0fb8ea389178a2abf1e26f5a97ad3e2fc19ec10faab&" alt="Profile Picture">
         <span id="who"></span>
         <span id="pointer">&#9758;</span>
         <span id="footer"></span>
         <div class="flexbox">
-            <a href="https://discord.gg/53FyXvGj"><button><i class="icon fa-brands discord"></i>Tracer C2</button></a>
+            <a href="https://discord.gg/53FyXvGj"><button><i class="icon fa-brands telegram"></i>Tracer C2</button></a>
             <a href="https://discord.gg/59EDTBtj"><button><i class="icon fa-brands discord"></i>Slit Society</button></a>
         </div>
-        <div id="viewCounter">Views: <span id="viewCount">0</span></div> <!-- View counter added -->
+        <div id="viewCounter">Views: <span id="count">0</span></div>
     </main>
 
     <audio id="backgroundMusic">
@@ -61,22 +62,28 @@
         const footerText = "Buy tracer osint/c2 | Adapt or vanish nigger";
         const footerElement = document.getElementById("footer");
         const pointerElement = document.getElementById("pointer");
-        const viewCountElement = document.getElementById("viewCount");
+        const viewCountElement = document.getElementById("count");
         let index = 0;
         let typing = true;
         let musicPlayed = false;
-        let viewCount = 0; // Initialize view count
+        let viewCount = 0;
 
         function createSpans(text, parentElement) {
-            for (let char of text) {
+            for (const char of text) {
                 const span = document.createElement("span");
                 span.textContent = char;
                 parentElement.appendChild(span);
             }
         }
 
+        function updateViewCount() {
+            viewCount++;
+            viewCountElement.textContent = viewCount;
+        }
+
         createSpans(text, whoElement);
         typeWriter();
+        updateViewCount();
 
         function typeWriter() {
             if (index < footerText.length && typing) {
@@ -96,17 +103,8 @@
                 musicPlayed = true;
             }
         }
-
+        
         document.addEventListener("click", playAudio);
-
-        // Increment view count
-        function incrementViewCount() {
-            viewCount++;
-            viewCountElement.textContent = viewCount;
-        }
-
-        // Call incrementViewCount on page load
-        window.onload = incrementViewCount;
     </script>
 </body>
 </html>
