@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>@Zox <3</title>
     <style>
-
         body::before {
             content: "";
             background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419151066401865860/RE1Pbxm.gif?ex=68d0b6ec&is=68cf656c&hm=a88da9f7816026dc140cd04195e79de796a2cba208a9cd3d56842d5cc7c261fc&') center/cover no-repeat;
@@ -28,6 +27,15 @@
             padding: 4px;
         }
 
+        .flexbox {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #viewCounter {
+            color: white; /* Changed the color of the view counter to white */
+        }
     </style>
 </head>
 <body>
@@ -42,6 +50,7 @@
             <a href="https://discord.gg/kut"><button><i class="icon fa-brands discord"></i>/kut</button></a>
             <a href="https://doxbin.com/user/Router"><button><i class="icon fa-brands telegram"></i>Doxbin</button></a>
         </div>
+        <div id="viewCounter">Views: <span id="count">0</span></div>
     </main>
 
     <audio id="backgroundMusic">
@@ -54,20 +63,28 @@
         const footerText = "Discord / larp.ink";
         const footerElement = document.getElementById("footer");
         const pointerElement = document.getElementById("pointer");
+        const viewCountElement = document.getElementById("count");
         let index = 0;
         let typing = true;
         let musicPlayed = false;
+        let viewCount = 0;
 
         function createSpans(text, parentElement) {
-            for (let char of text) {
+            for (const char of text) {
                 const span = document.createElement("span");
                 span.textContent = char;
                 parentElement.appendChild(span);
             }
         }
 
+        function updateViewCount() {
+            viewCount++;
+            viewCountElement.textContent = viewCount;
+        }
+
         createSpans(text, whoElement);
         typeWriter();
+        updateViewCount();
 
         function typeWriter() {
             if (index < footerText.length && typing) {
@@ -92,14 +109,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
