@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <title>@Juice12am</title>
+    <title>@Juice12AM <3</title>
     <style>
         body::before {
             content: "";
-            background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419151015529283645/670dc94d4384ff6b3383f27c61c5491a.gif?ex=68d0b6e0&is=68cf6560&hm=391b292a3e849824225827641e6efd5e481c105d02d29dabd209ced4c2871bec&') center/cover no-repeat;
+            background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419151015529283645/670dc94d4384ff6b3383f27c61c5491a.gif?ex=68d15fa0&is=68d00e20&hm=1a7b2c9824bc99c4cbb2eb7f1b9585b85edff9f41d6f4de61c423f760a4cf0af&') center/cover no-repeat;
             position: absolute;
             top: 0;
             left: 0;
@@ -27,29 +27,29 @@
             padding: 4px;
         }
 
-        .view-counter {
-            color: white;
-            font-size: 20px;
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            z-index: 10;
+        .flexbox {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #viewCounter {
+            color: white; /* Changed the color of the view counter to white */
         }
     </style>
 </head>
 <body>
     <div class="overlay"></div>
     <main>
-        <img src="https://cdn.discordapp.com/attachments/1419150915088289804/1419151005353902100/11.jpg?ex=68d0b6de&is=68cf655e&hm=53cf5bbae951fc681bb8937313c7218567888c326150ca68dc47127936141ed0&" alt="Profile Picture">
+        <img src="https://cdn.discordapp.com/attachments/1419150915088289804/1419151005353902100/11.jpg?ex=68d15f9e&is=68d00e1e&hm=545824879786cc3e164956ef98e4eae12ee0dfad6327709be5e8af85f9cf1101&" alt="Profile Picture">
         <span id="who"></span>
         <span id="pointer">&#9758;</span>
         <span id="footer"></span>
         <div class="flexbox">
-            <a href="https://discord.gg/kut"><button><i class="icon fa-brands discord"></i>/kut</button></a>
-            <a href="https://discord.gg/RCnXAvffD4"><button><i class="icon fa-brands discord"></i>RapeBin</button></a>
-            <a href="https://rarbin.com/user/1x5"><button><i class="icon fa-brands telegram"></i>Rarbin</button></a>
+            <a href="https://discord.gg/vbKQ7RDq"><button><i class="icon fa-brands telegram"></i>1996</button></a>
+            <a href="https://discord.gg/S2Nue2fjpB"><button><i class="icon fa-brands discord"></i>12am</button></a>
         </div>
-        <div class="view-counter" id="viewCounter">Views: 0</div>
+        <div id="viewCounter">Views: <span id="count">0</span></div>
     </main>
 
     <audio id="backgroundMusic">
@@ -59,25 +59,31 @@
     <script>
         const text = "@Juice12AM";
         const whoElement = document.getElementById("who");
-        const footerText = "Discord / drug.abuse";
+        const footerText = "Discord - _rep._";
         const footerElement = document.getElementById("footer");
         const pointerElement = document.getElementById("pointer");
-        const viewCounterElement = document.getElementById("viewCounter");
+        const viewCountElement = document.getElementById("count");
         let index = 0;
         let typing = true;
         let musicPlayed = false;
         let viewCount = 0;
 
         function createSpans(text, parentElement) {
-            for (let char of text) {
+            for (const char of text) {
                 const span = document.createElement("span");
                 span.textContent = char;
                 parentElement.appendChild(span);
             }
         }
 
+        function updateViewCount() {
+            viewCount++;
+            viewCountElement.textContent = viewCount;
+        }
+
         createSpans(text, whoElement);
         typeWriter();
+        updateViewCount();
 
         function typeWriter() {
             if (index < footerText.length && typing) {
@@ -97,16 +103,8 @@
                 musicPlayed = true;
             }
         }
-
-        function incrementViewCounter() {
-            viewCount++;
-            viewCounterElement.textContent = `Views: ${viewCount}`;
-        }
-
-        document.addEventListener("click", () => {
-            playAudio();
-            incrementViewCounter();
-        });
+        
+        document.addEventListener("click", playAudio);
     </script>
 </body>
 </html>
