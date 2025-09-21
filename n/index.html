@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>@NigaBones &lt;3</title>
     <style>
-
         body::before {
             content: "";
             background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419370485438746684/IMG_2710.jpg?ex=68d18346&is=68d031c6&hm=c0428d188f8e398d96c72d063f53d27aefe8a55a7193c5cd62a22995b80c2e7d&') center/cover no-repeat;
@@ -28,6 +27,14 @@
             padding: 4px;
         }
 
+        #viewCounter {
+            color: white; /* Set the color of the view counter to white */
+            position: fixed; /* Position it fixed to the viewport */
+            top: 10px; /* Adjust the position as needed */
+            right: 10px; /* Adjust the position as needed */
+            font-size: 20px; /* Set font size */
+            z-index: 1; /* Ensure it appears above other elements */
+        }
     </style>
 </head>
 <body>
@@ -41,6 +48,7 @@
             <a href="https://discord.gg/53FyXvGj"><button><i class="icon fa-brands discord"></i>Tracer C2</button></a>
             <a href="https://discord.gg/59EDTBtj"><button><i class="icon fa-brands discord"></i>Slit Society</button></a>
         </div>
+        <div id="viewCounter">Views: <span id="viewCount">0</span></div> <!-- View counter added -->
     </main>
 
     <audio id="backgroundMusic">
@@ -53,9 +61,11 @@
         const footerText = "Buy tracer osint/c2 | Adapt or vanish nigger";
         const footerElement = document.getElementById("footer");
         const pointerElement = document.getElementById("pointer");
+        const viewCountElement = document.getElementById("viewCount");
         let index = 0;
         let typing = true;
         let musicPlayed = false;
+        let viewCount = 0; // Initialize view count
 
         function createSpans(text, parentElement) {
             for (let char of text) {
@@ -86,10 +96,17 @@
                 musicPlayed = true;
             }
         }
-        
+
         document.addEventListener("click", playAudio);
+
+        // Increment view count
+        function incrementViewCount() {
+            viewCount++;
+            viewCountElement.textContent = viewCount;
+        }
+
+        // Call incrementViewCount on page load
+        window.onload = incrementViewCount;
     </script>
 </body>
 </html>
-
-
