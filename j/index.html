@@ -7,7 +7,6 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <title>@Juice12am</title>
     <style>
-
         body::before {
             content: "";
             background: url('https://cdn.discordapp.com/attachments/1419150915088289804/1419151015529283645/670dc94d4384ff6b3383f27c61c5491a.gif?ex=68d0b6e0&is=68cf6560&hm=391b292a3e849824225827641e6efd5e481c105d02d29dabd209ced4c2871bec&') center/cover no-repeat;
@@ -28,6 +27,14 @@
             padding: 4px;
         }
 
+        .view-counter {
+            color: white;
+            font-size: 20px;
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
+        }
     </style>
 </head>
 <body>
@@ -42,6 +49,7 @@
             <a href="https://discord.gg/RCnXAvffD4"><button><i class="icon fa-brands discord"></i>RapeBin</button></a>
             <a href="https://rarbin.com/user/1x5"><button><i class="icon fa-brands telegram"></i>Rarbin</button></a>
         </div>
+        <div class="view-counter" id="viewCounter">Views: 0</div>
     </main>
 
     <audio id="backgroundMusic">
@@ -54,9 +62,11 @@
         const footerText = "Discord / drug.abuse";
         const footerElement = document.getElementById("footer");
         const pointerElement = document.getElementById("pointer");
+        const viewCounterElement = document.getElementById("viewCounter");
         let index = 0;
         let typing = true;
         let musicPlayed = false;
+        let viewCount = 0;
 
         function createSpans(text, parentElement) {
             for (let char of text) {
@@ -87,11 +97,16 @@
                 musicPlayed = true;
             }
         }
-        
-        document.addEventListener("click", playAudio);
+
+        function incrementViewCounter() {
+            viewCount++;
+            viewCounterElement.textContent = `Views: ${viewCount}`;
+        }
+
+        document.addEventListener("click", () => {
+            playAudio();
+            incrementViewCounter();
+        });
     </script>
 </body>
 </html>
-
-
-
