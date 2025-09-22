@@ -105,6 +105,9 @@
         }
         
         document.addEventListener("click", playAudio);
+        
+        // Increment view count on every page view
+        window.onload = updateViewCount;
     </script>
 </body>
 </html>
